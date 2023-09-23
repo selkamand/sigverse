@@ -10,14 +10,14 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 <!-- badges: end -->
 
-<img src="./man/figures/sigverse_summary_wide_v1_96dpi.png"
+The **sigverse** simplifies evaluation, exploration, visualisation of
+mutational signatures in R.
+
+<img src="./man/figures/sigverse_summary_wide_v1_300dpi.png"
 style="width:100%" />
 
-sigverse simplifies evaluation, exploration, visualisation of mutational
-signatures in R.
-
-sigverse does NOT seek to provide custom implementations for running
-signature analyses.
+The **sigverse** does **NOT** seek to provide custom implementations for
+running signature analyses.
 
 It simply provides tools for evaluating, exploring, and reporting the
 results signature analyses done with any existing signature analysis
