@@ -21,7 +21,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
+<center>
+
 ![](./man/figures/sigverse_summary_wide_v1_96dpi.png){width="100%"}
+
+</center>
 
 sigverse simplifies evaluation, exploration, visualisation of mutational signatures in R.
 

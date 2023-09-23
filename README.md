@@ -9,9 +9,12 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 <!-- badges: end -->
+<center>
 
 <img src="./man/figures/sigverse_summary_wide_v1_96dpi.png"
 style="width:100.0%" />
+
+</center>
 
 sigverse simplifies evaluation, exploration, visualisation of mutational
 signatures in R.
