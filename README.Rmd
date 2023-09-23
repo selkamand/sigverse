@@ -13,18 +13,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sigverse <img src="man/figures/hex_v1_96dpi.png" align="right" height="120" />
+# sigverse <img src="man/figures/hex_v1_96dpi.png" align="right" height="120"/>
 
 <!-- badges: start -->
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
 <!-- badges: end -->
 
-![](./man/figures/sigverse_summary_wide_v1_96dpi.png)
+![](./man/figures/sigverse_summary_wide_v1_96dpi.png){width="700"}
 
-
-
-> [!WARNING]
+> [!WARNING] 
 > Sigverse is in early development, and not yet ready for use
 
 sigverse simplifies evaluation, exploration, visualisation of mutational signatures in R.
@@ -189,7 +188,6 @@ There are 6 key types of data the sigverse uses.
 **Decomposition Collections**: Lists of decomposition data.frames (1 per sample) where name represents a sample identifier
 
 **Cohort Signature Analysis Results**: data.frame with 4 columns (sample, signature, contribution, bootstraps)
-
 
 ## Similar tools
 

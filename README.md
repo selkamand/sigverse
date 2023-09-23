@@ -1,15 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# sigverse <img src="man/figures/hex_v1_96dpi.png" align="right" height="120" />
+# sigverse <img src="man/figures/hex_v1_96dpi.png" align="right" height="120"/>
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
 <!-- badges: end -->
 
-![](./man/figures/sigverse_summary_wide_v1_96dpi.png)
+<img src="./man/figures/sigverse_summary_wide_v1_96dpi.png"
+width="700" />
 
 > \[!WARNING\] Sigverse is in early development, and not yet ready for
 > use
