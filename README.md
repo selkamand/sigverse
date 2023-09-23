@@ -9,7 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-![](/home/selkamand/packages/sigverse/man/figures/sigverse_summary_wide_v1_96dpi.png)
+![](./man/figures/sigverse_summary_wide_v1_96dpi.png)
 
 > \[!WARNING\] Sigverse is in early development, and not yet ready for
 > use
