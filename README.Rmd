@@ -21,16 +21,18 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-![](./man/figures/sigverse_summary_wide_v1_96dpi.png){width="700"}
-
-> [!WARNING] 
-> Sigverse is in early development, and not yet ready for use
+![](./man/figures/sigverse_summary_wide_v1_96dpi.png){width="100%"}
 
 sigverse simplifies evaluation, exploration, visualisation of mutational signatures in R.
 
 sigverse does NOT seek to provide custom implementations for running signature analyses.
 
 It simply provides tools for evaluating, exploring, and reporting the results signature analyses done with any existing signature analysis frameworks (although we recommend [sigminer](https://github.com/ShixiangWang/sigminer) if you're using R).
+
+
+**WARNING: Sigverse is in early development, and not yet ready for use**
+
+
 
 ## Installation
 
@@ -43,7 +45,7 @@ devtools::install_github("selkamand/sigverse")
 
 ## Usage
 
-### (Visualisation)
+### Visualisation
 
 1.  Visualise Signatures
 
