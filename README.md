@@ -9,12 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 <!-- badges: end -->
-<center>
 
 <img src="./man/figures/sigverse_summary_wide_v1_96dpi.png"
-style="width:100.0%" />
-
-</center>
+style="width:100%" />
 
 sigverse simplifies evaluation, exploration, visualisation of mutational
 signatures in R.
@@ -57,8 +54,6 @@ sig_visualise(signatures, "SBS5")
 
 2.  Visualise Decompositions
 
-A decomposition represents a breakdown
-
 ``` r
 
 # Load decompositions from sigstash
@@ -78,7 +73,7 @@ example the model might look like
 Signature1 \* 0.2 + Signature2 \* 0.3 + Signature3 \* 0.5 = Simulated
 Decomposition that (hopefully) represents the observed decomposition
 
-We can visualise this ‘model’
+We can visualise this signature model as follows
 
 ``` r
 

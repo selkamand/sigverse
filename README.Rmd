@@ -21,11 +21,10 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-<center>
 
-![](./man/figures/sigverse_summary_wide_v1_96dpi.png){width="100%"}
+<img src="./man/figures/sigverse_summary_wide_v1_96dpi.png"
+style="width:100%" />
 
-</center>
 
 sigverse simplifies evaluation, exploration, visualisation of mutational signatures in R.
 
@@ -66,8 +65,6 @@ sig_visualise(signatures, "SBS5")
 
 2.  Visualise Decompositions
 
-A decomposition represents a breakdown
-
 ```{r, eval = FALSE}
 
 # Load decompositions from sigstash
@@ -83,7 +80,7 @@ The primary output of ANY signature analyse is a model which describes the set o
 
 Signature1 \* 0.2 + Signature2 \* 0.3 + Signature3 \* 0.5 = Simulated Decomposition that (hopefully) represents the observed decomposition
 
-We can visualise this 'model'
+We can visualise this signature model as follows
 
 ```{r, eval = FALSE}
 
