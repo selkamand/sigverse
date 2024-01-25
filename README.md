@@ -216,3 +216,23 @@ reccomend only using sigverse for the following reasons:
 
 3.  Find missing functionality (e.g. cohort signature result exploration
     / no reporting modules)
+
+## Links to sigverse packages
+
+- [sigstash](https://github.com/selkamand/sigstash) for signature
+  collections
+
+- [sigvis](https://github.com/selkamand/sigsvis) for signature
+  visualisation
+
+- [sigstats](https://github.com/selkamand/sigstats) for signature
+  statistics (e.g. cosine similarity)
+
+- [sigsim](https://github.com/selkamand/sigsim) for simulating
+  signatures / sample profiles
+
+- [sigstory](https://github.com/selkamand/sigstory) for reporting
+  results of signature analyses
+
+- [sigshared](https://github.com/selkamand/sigshared) for utilities used
+  by many of the sigverse packages
