@@ -222,7 +222,7 @@ reccomend only using sigverse for the following reasons:
 - [sigstash](https://github.com/selkamand/sigstash) for signature
   collections
 
-- [sigvis](https://github.com/selkamand/sigsvis) for signature
+- [sigvis](https://github.com/selkamand/sigvis) for signature
   visualisation
 
 - [sigstats](https://github.com/selkamand/sigstats) for signature
