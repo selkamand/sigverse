@@ -46,6 +46,12 @@ sigverse_conflict_message <- function(x) {
 
   winner <- pkgs %>% purrr::map_chr(1)
   funs <- format(paste0(cli::col_blue(winner), "::", cli::col_green(paste0(names(x), "()"))))
+
+  if(length(winner) == 0){
+   return(NULL)
+  }
+
+  #browser()
   bullets <- paste0(
     cli::col_red(cli::symbol$cross), " ", funs, " masks ", other_calls,
     collapse = "\n"
