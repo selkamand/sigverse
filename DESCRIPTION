@@ -1,12 +1,28 @@
 Package: sigverse
-Title: What the Package Does (One Line, Title Case)
+Title: Easily Install and Load the 'Sigverse'
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Sam", "El-Kamand", , "selkamand@ccia.org.au", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-2270-8088"))
+Description: The 'sigverse' is a collection of packages that facilitate
+    mutational signature analysis. This package is designed to simplify 
+    installlation and loading of 'sigverse' packages in a single step.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
+Imports: 
+    sigshared (>= 0.0.0.9000),
+    sigstash (>= 0.0.0.9000),
+    sigstats (>= 0.0.0.9000),
+    sigvis (>= 0.0.0.9000),
+    sigstory (>= 0.0.0.9000),
+    sigsim (>= 0.0.0.9000)
+Remotes: 
+    selkamand/sigstash,
+    selkamand/sigvis,
+    selkamand/sigshared,
+    selkamand/sigstats,
+    selkamand/sigstory,
+    selkamand/sigsim

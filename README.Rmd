@@ -38,8 +38,10 @@ It simply provides tools for evaluating, exploring, and reporting the results si
 You can install the development version of sigverse from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("selkamand/sigverse")
+if (!require("pak", quietly = TRUE))
+    install.packages("pak")
+
+pak::pak("selkamand/sigverse")
 ```
 
 ## Usage
