@@ -185,23 +185,7 @@ The sigverse needs to work downstream of many different signature analysis tools
 To maximise interoperability all expected inputs are simple dataframes and lists, rather
 than sigverse specific S3/S4/R8/R7 objects.
 
-There are 6 key types of data the sigverse uses.
-
-**Signatures**: representing the profile of a mutational signature. data.frames  with 3 columns (channel, type, and fraction)
-
-**Signature Collections**: Lists of signature data.frames, where name of list entry is the name of the signature
-
-**Signature Aetiology Collections**: Metadata about a signature. data.frames with 2 columns (signature, aetiology)
-
-**Catalogue**: The mutational profile of a sample, described by tallying 
-mutations belonging to each mutational channel. Catalogues do not always
-have to be observational. They can also be simulated from signature 
-models.
-data.frames with 4 columns (channel, type, fraction, count)
-
-**Catalogue Collections**: Lists of catalogue data.frames (1 per sample) where name represents a sample identifier
-
-**Cohort Signature Analysis Results**: data.frame with 4 columns (sample, signature, contribution, bootstraps)
+All data types used by sigverse packages are described in [sigshared documentation](https://github.com/selkamand/sigshared)
 
 ## Similar tools
 
