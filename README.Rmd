@@ -50,43 +50,50 @@ pak::pak("selkamand/sigverse")
 
 1.  Visualise Signatures
 
-```{r, eval = FALSE}
+```{r, eval = TRUE, fig.height = 4, fig.width=10}
 library(sigverse)
 
 # Load signatures from sigstash
-signatures <- sig_load_cosmic_v3()
+signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
 
-# Visualise a singal signature
-sig_visualise(signatures, "SBS5")
+# Visualise a single signature
+sig_visualise(signatures[["SBS5"]])
 
 ```
 
-2.  Visualise Decompositions
+2.  Visualise Catalogues
+
 
 ```{r, eval = FALSE}
 
-# Load decompositions from sigstash
-brca_decompositions <- sig_load_decomposition_tcga('BRCA')
+# Load mutational profile catalogue from sigstash
+brca_catalalogue <- sig_load_catalogue('BRCA')
 
-# Visualise a decomposition
-sig_visualise(brca_decompositions, 'TCGA-D8-A1XU')
+# Visualise an observed mutational catalogue
+sig_visualise(
+  brca_catalalogue[['TCGA-D8-A1XU-01A-11D-A14K-09']],
+  class = "catalogue"
+  )
 ```
 
 3.  Visualise a Signature Model
 
-The primary output of ANY signature analyse is a model which describes the set of signatures which, when combined with certain weights (hopefully) explain the observed mutational pattern in a sample. For example the model might look like
+The primary output of ANY signature analyse is a model which describes the set of signatures which, when combined with certain weights approximate the observed mutational pattern in a sample. For example the model might look like
 
-Signature1 \* 0.2 + Signature2 \* 0.3 + Signature3 \* 0.5 = Simulated Decomposition that (hopefully) represents the observed decomposition
+Signature1 \* 0.2 + Signature2 \* 0.3 + Signature3 \* 0.5 = Simulated Catalogue that (hopefully) represents the observed profile.
 
-We can visualise this signature model as follows
+We can visualise a signature model as follows
 
-```{r, eval = FALSE}
+```{r, fig.height = 4, fig.width=10}
 
 # Load a signature from sigstash
-signatures <- sig_load_cosmic_v3()
+signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
 
-# Visualise the decomposition expected from a signature model, where signature 'SBS1' explains 40% of the mutations in a sample, and 'SBS2' explains the remaining 40%
-sig_visualise(signatures, model = c('SBS1' = 0.4, 'SBS2' = 0.6))
+# Build a signature model signature 'SBS2' explains 40% of the mutations in a sample, and 'SBS13' explains the remaining 60%
+model = sig_combine(signatures, model = c('SBS2' = 0.4, 'SBS13' = 0.6))
+
+# Visualise the model
+sig_visualise(model, class = 'model')
 ```
 
 4.  Visualize a cohort
@@ -122,8 +129,8 @@ In this example we manually define the properties of our model to demonstrate th
 
 ```{r, eval = FALSE}
 
-# Specify your decomposition
-observed_decomposition = example_decomposition
+# Specify your catalogue
+observed_catalogue = example_catalogue
 
 # Specify your model
 model = c('SBS1' = 0.4, 'SBS2' = 0.5)
@@ -143,7 +150,7 @@ similar_samples = data.frame(
 
 # Produce the html report
 sig_story(
-  observed = observed_decomposition
+  observed = observed_catalogue
   model = model,
   aetiology = aetiology,
   similar_samples = similar_samples
@@ -152,12 +159,12 @@ sig_story(
 
 ### Simulation
 
-sigsim allows you to simulate decompositions matrices by combining different mutational signatures, plus spike known amounts of noise. This can be useful for testing various analytical toolkits.
+sigsim allows you to simulate mutational catalogues by combining different mutational signatures, plus spike known amounts of noise. This can be useful for benchmarking signature tools.
 
 ```{r, eval = FALSE}
 
 # Load signatures from sigstash
-signatures <- sig_load_cosmic_v3()
+signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
 
 
 # Simulate Signatures
@@ -166,7 +173,7 @@ sig_simulate(signatures, c('SBS3', "SBS4"))
 
 ### Statistics
 
-sigstats contains functionality to compute basic signature related statistics. For example, computing cosine similarity of two decompositions.
+sigstats contains functionality to compute basic signature related statistics. For example, computing cosine similarity of two mutational catalogues.
 
 ### Utilities
 
@@ -175,24 +182,32 @@ sigshared is a collection of utilities that most packages in the sigverse use. I
 ## Key Object Types
 
 The sigverse needs to work downstream of many different signature analysis tools.
+To maximise interoperability all expected inputs are simple dataframes and lists, rather
+than sigverse specific S3/S4/R8/R7 objects.
 
 There are 6 key types of data the sigverse uses.
 
-**Signatures**: data.frames with 3 columns (channel, type, and fraction)
+**Signatures**: representing the profile of a mutational signature. data.frames  with 3 columns (channel, type, and fraction)
 
 **Signature Collections**: Lists of signature data.frames, where name of list entry is the name of the signature
 
-**Signature Aetiology Collections**: data.frames with 2 columns (signature, aetiology)
+**Signature Aetiology Collections**: Metadata about a signature. data.frames with 2 columns (signature, aetiology)
 
-**Decompositions**: data.frames with 4 columns (channel, type, fraction, count)
+**Catalogue**: The mutational profile of a sample, described by tallying 
+mutations belonging to each mutational channel. Catalogues do not always
+have to be observational. They can also be simulated from signature 
+models.
+data.frames with 4 columns (channel, type, fraction, count)
 
-**Decomposition Collections**: Lists of decomposition data.frames (1 per sample) where name represents a sample identifier
+**Catalogue Collections**: Lists of catalogue data.frames (1 per sample) where name represents a sample identifier
 
 **Cohort Signature Analysis Results**: data.frame with 4 columns (sample, signature, contribution, bootstraps)
 
 ## Similar tools
 
-Most signature analysis packages provide their own suite of visualisation and exploration tools. To simplify your software stack, we reccomend only using sigverse for the following reasons:
+Most signature analysis packages provide their own suite of visualisation and 
+exploration tools. To simplify your software stack, we recommend only using the 
+sigverse for the following reasons:
 
 1.  you run multiple signature analysis tools and want a uniform way of exploring the results
 
