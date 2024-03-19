@@ -244,3 +244,8 @@ recommend only using the sigverse for the following reasons:
 
 - [sigshared](https://github.com/selkamand/sigshared) for utilities used
   by many of the sigverse packages
+
+## Links to sigverse-adjacent packages
+
+- [TCGAcatalogues](https://github.com/selkamand/TCGAcatalogues) for
+  loading TCGA sample catalogues
