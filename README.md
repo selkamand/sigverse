@@ -50,6 +50,9 @@ library(sigverse)
 #> ✔ sigshared 0.0.0.9000     ✔ sigstats  0.0.0.9000
 #> ✔ sigsim    0.0.0.9000     ✔ sigstory  0.0.0.9000
 #> ✔ sigstash  0.0.0.9000     ✔ sigvis    0.0.0.9000
+```
+
+``` r
 
 # Load signatures from sigstash
 signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
@@ -65,17 +68,25 @@ sig_visualise(signatures[["SBS5"]])
 
 2.  Visualise Catalogues
 
-``` r
+Note to access the TCGA catalogues first install the datasets using
+`remotes::install_github("selkamand/TCGAcatalogues")`
 
-# Load mutational profile catalogue from sigstash
-brca_catalalogue <- sig_load_catalogue('BRCA')
+``` r
+# Load mutational profile catalogue from the TCGAcatalogues package
+library(TCGAcatalogues) 
+brca_catalalogue <- catalogues_load('BRCA')
 
 # Visualise an observed mutational catalogue
 sig_visualise(
   brca_catalalogue[['TCGA-D8-A1XU-01A-11D-A14K-09']],
   class = "catalogue"
   )
+#> ✔ All channels matched perfectly to set [sbs_96]. Using this set for sort order
+#> ✔ All types matched perfectly to set [sbs_type]. Using this set for sort order
+#> ✔ Types matched perfectly to palette [snv_type]
 ```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 3.  Visualise a Signature Model
 
@@ -95,7 +106,7 @@ We can visualise a signature model as follows
 signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
 
 # Build a signature model signature 'SBS2' explains 40% of the mutations in a sample, and 'SBS13' explains the remaining 60%
-model = sig_combine(signatures, model = c('SBS2' = 0.4, 'SBS13' = 0.6))
+model = sig_combine(signatures, model = c('SBS2' = 0.4, 'SBS13' = 0.6), format = "combined")
 
 # Visualise the model
 sig_visualise(model, class = 'model')
@@ -107,6 +118,10 @@ sig_visualise(model, class = 'model')
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 4.  Visualize a cohort
+
+> **Warning**
+>
+> Cohort visualisations are not yet available in the sigverse
 
 If you’ve got sequencing results from a cohort, sigvis lets you either.
 
@@ -132,6 +147,10 @@ sig_visualise_sample_in_cohort(cohort, 'TCGA-D8-A1XU')
 ```
 
 ### Reporting
+
+> **Warning**
+>
+> Interactive sample reports are not yet available in the sigverse
 
 After running a signature analysis on your sample of interest, produce a
 html report describing the result.
@@ -175,6 +194,10 @@ sig_story(
 
 ### Simulation
 
+> **Warning**
+>
+> Simulation functions are not yet available in the sigverse
+
 sigsim allows you to simulate mutational catalogues by combining
 different mutational signatures, plus spike known amounts of noise. This
 can be useful for benchmarking signature tools.
@@ -186,7 +209,7 @@ signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
 
 
 # Simulate Signatures
-sig_simulate(signatures, c('SBS3', "SBS4"))
+sig_simulate(signatures, c('SBS3' = 0.5, "SBS4" = 0.5))
 ```
 
 ### Statistics
