@@ -72,7 +72,7 @@ brca_catalalogue <- catalogues_load('BRCA')
 
 # Visualise an observed mutational catalogue
 sig_visualise(
-  brca_catalalogue[['TCGA-D8-A1XU-01A-11D-A14K-09']],
+  brca_catalalogue[['TCGA-BH-A18P-01A-11D-A12B-09']],
   class = "catalogue"
   )
 ```
