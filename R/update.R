@@ -13,7 +13,7 @@
 sigverse_update <- function(recursive = FALSE, repos = getOption("repos")) {
 
   deps <- sigverse_deps(recursive, repos)
-  behind <- dplyr::filter(deps, behind)
+  behind <- subset(deps, behind)
 
   if (nrow(behind) == 0) {
     cli::cat_line("All sigverse packages up-to-date")
@@ -90,12 +90,12 @@ sigverse_deps <- function(recursive = FALSE, repos = getOption("repos")) {
   cran_version <- lapply(pkgs[pkg_deps, "Version"], package_version)
   local_version <- lapply(pkg_deps, packageVersion)
 
-  behind <- purrr::map2_lgl(cran_version, local_version, `>`)
+  behind <- unlist(Map(`>`, cran_version, local_version))
 
   tibble::tibble(
     package = pkg_deps,
-    cran = cran_version %>% purrr::map_chr(as.character),
-    local = local_version %>% purrr::map_chr(as.character),
+    cran = vapply(cran_version, as.character, character(1)),
+    local = vapply(local_version, as.character, character(1)),
     behind = behind
   )
 }
