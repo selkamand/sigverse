@@ -7,8 +7,7 @@ Authors@R:
 Description: The 'sigverse' is a collection of packages that facilitate
     mutational signature analysis. This package is designed to simplify 
     installlation and loading of 'sigverse' packages in a single step.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
