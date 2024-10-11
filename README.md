@@ -7,7 +7,13 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-
+![GitHub Issues or Pull
+Requests](https://img.shields.io/github/issues-closed/selkamand/sigverse)
+[![code
+size](https://img.shields.io/github/languages/code-size/selkamand/sigverse.svg)](https://github.com/selkamand/sigverse)
+![GitHub last
+commit](https://img.shields.io/github/last-commit/selkamand/sigverse)
+[![R-CMD-check](https://github.com/selkamand/sigverse/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/sigverse/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The **sigverse** simplifies evaluation, exploration, visualisation of
