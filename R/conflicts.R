@@ -11,7 +11,7 @@
 #' sigverse_conflicts()
 sigverse_conflicts <- function(only = NULL) {
   envs <- grep("^package:", search(), value = TRUE)
-  envs <- purrr::set_names(envs)
+  names(envs) <- envs
 
   if (!is.null(only)) {
     only <- union(only, core)
@@ -20,13 +20,13 @@ sigverse_conflicts <- function(only = NULL) {
 
   objs <- invert(lapply(envs, ls_env))
 
-  conflicts <- purrr::keep(objs, ~ length(.x) > 1)
+  conflicts <- objs[vapply(objs, function(.x) { length(.x) > 1 }, logical(1))]
 
   tidy_names <- paste0("package:", sigverse_packages())
-  conflicts <- purrr::keep(conflicts, ~ any(.x %in% tidy_names))
+  conflicts <- conflicts[vapply(conflicts, function(.x) { any(.x %in% tidy_names) }, logical(1))]
 
-  conflict_funs <- purrr::imap(conflicts, confirm_conflict)
-  conflict_funs <- purrr::compact(conflict_funs)
+  conflict_funs <- Map(confirm_conflict, conflicts, names(conflicts))
+  conflict_funs <- conflict_funs[vapply(conflict_funs, function(.f){ is.function(.f) && length(.f()) > 0}, FUN.VALUE = logical(1))]
 
   structure(conflict_funs, class = "sigverse_conflicts")
 }
@@ -37,21 +37,24 @@ sigverse_conflict_message <- function(x) {
     right = "sigverse_conflicts()"
   )
 
-  pkgs <- x %>% purrr::map(~ gsub("^package:", "", .))
-  others <- pkgs %>% purrr::map(`[`, -1)
-  other_calls <- purrr::map2_chr(
-    others, names(others),
-    ~ paste0(cli::col_blue(.x), "::", .y, "()", collapse = ", ")
-  )
+  # Remove "package:" prefix from package names
+  pkgs <- lapply(x, function(v) gsub("^package:", "", v))
+  # Get all conflicting packages except the first one
+  others <- lapply(pkgs, function(v) v[-1])
 
-  winner <- pkgs %>% purrr::map_chr(1)
+  # Create a character vector of other calls
+  other_calls <- mapply(function(pkg_list, fun_name) {
+    paste0(cli::col_blue(pkg_list), "::", fun_name, "()", collapse = ", ")
+  }, others, names(others), USE.NAMES = FALSE)
+
+  # Get the package that masks others
+  winner <- sapply(pkgs, `[`, 1)
   funs <- format(paste0(cli::col_blue(winner), "::", cli::col_green(paste0(names(x), "()"))))
 
-  if(length(winner) == 0){
-   return(NULL)
+  if (length(winner) == 0) {
+    return(NULL)
   }
 
-  #browser()
   bullets <- paste0(
     cli::col_red(cli::symbol$cross), " ", funs, " masks ", other_calls,
     collapse = "\n"
@@ -59,8 +62,8 @@ sigverse_conflict_message <- function(x) {
 
   conflicted <- paste0(
     cli::col_cyan(cli::symbol$info), " ",
-    cli::format_inline("Use the {.href [conflicted package](http://conflicted.r-lib.org/)} to force all conflicts to become errors"
-    ))
+    cli::format_inline("Use the {.href [conflicted package](http://conflicted.r-lib.org/)} to force all conflicts to become errors")
+  )
 
   paste0(
     header, "\n",
@@ -69,30 +72,37 @@ sigverse_conflict_message <- function(x) {
   )
 }
 
+
 #' @export
 print.sigverse_conflicts <- function(x, ..., startup = FALSE) {
   cli::cat_line(sigverse_conflict_message(x))
   invisible(x)
 }
 
-#' @importFrom magrittr %>%
+
 confirm_conflict <- function(packages, name) {
-  # Only look at functions
-  objs <- packages %>%
-    purrr::map(~ get(name, pos = .)) %>%
-    purrr::keep(is.function)
+  # Get the objects named 'name' from each package
+  objs <- lapply(packages, function(p) get(name, pos = p))
+
+  # Keep only the objects that are functions
+  is_func <- sapply(objs, is.function)
+  objs <- objs[is_func]
+  packages <- packages[is_func]
 
   if (length(objs) <= 1)
     return()
 
   # Remove identical functions
-  objs <- objs[!duplicated(objs)]
-  packages <- packages[!duplicated(packages)]
+  unique_indices <- !duplicated(objs)
+  objs <- objs[unique_indices]
+  packages <- packages[unique_indices]
+
   if (length(objs) == 1)
     return()
 
   packages
 }
+
 
 ls_env <- function(env) {
   x <- ls(pos = env)

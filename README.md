@@ -7,7 +7,13 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-
+![GitHub Issues or Pull
+Requests](https://img.shields.io/github/issues-closed/selkamand/sigverse)
+[![code
+size](https://img.shields.io/github/languages/code-size/selkamand/sigverse.svg)](https://github.com/selkamand/sigverse)
+![GitHub last
+commit](https://img.shields.io/github/last-commit/selkamand/sigverse)
+[![R-CMD-check](https://github.com/selkamand/sigverse/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/selkamand/sigverse/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The **sigverse** simplifies evaluation, exploration, visualisation of
@@ -16,12 +22,15 @@ mutational signatures in R.
 <img src="./man/figures/sigverse_summary_wide_v1_300dpi.png"
 style="width:100%" />
 
-The **sigverse** does **NOT** seek to provide custom implementations for
-running signature analyses.
+For **turnkey** mutational signature analysis, see
+[sigscreen](https://github.com/selkamand/sigscreen).
+
+The **sigverse** itself does **NOT** seek to provide custom
+implementations for running signature analyses.
 
 It simply provides tools for evaluating, exploring, and reporting the
-results signature analyses done with any existing signature analysis
-frameworks (although we recommend
+results signature analyses done with existing signature analysis
+frameworks (we recommend
 [sigminer](https://github.com/ShixiangWang/sigminer) if you’re using R).
 
 **WARNING: Sigverse is in early development, and not yet ready for use**
@@ -48,11 +57,8 @@ pak::pak("selkamand/sigverse")
 library(sigverse)
 #> ── Attaching core sigverse packages ───────────────────── sigverse 0.0.0.9000 ──
 #> ✔ sigshared 0.0.0.9000     ✔ sigstats  0.0.0.9000
-#> ✔ sigsim    0.0.0.9000     ✔ sigstory  0.0.0.9000
+#> ✔ sigsim    0.0.0.9000     ✔ sigstory  1.0       
 #> ✔ sigstash  0.0.0.9000     ✔ sigvis    0.0.0.9000
-```
-
-``` r
 
 # Load signatures from sigstash
 signatures <- sig_load("COSMIC_v3.3.1_SBS_GRCh38")
