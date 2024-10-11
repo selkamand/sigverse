@@ -18,7 +18,11 @@ Imports:
     sigstats (>= 0.0.0.9000),
     sigvis (>= 0.0.0.9000),
     sigstory (>= 0.0.0.9000),
-    sigsim (>= 0.0.0.9000)
+    sigsim (>= 0.0.0.9000),
+    cli,
+    rlang,
+    rstudioapi,
+    tibble
 Remotes: 
     selkamand/sigstash,
     selkamand/sigvis,
