@@ -6,6 +6,6 @@ ignore_unused_imports <- function() {
   sigsim::sig_simulate_catalogues_from_signatures
   sigstash::sig_available
   sigstats::sig_cosine_similarity
-  sigstory::sigstory
+  sigstory::sig_story
   sigvis::sig_visualise
 }
